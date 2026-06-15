@@ -1,0 +1,1461 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:version='2' class='v2' expr:dir='data:blog.languageDirection'
+      xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:b='http://www.google.com/2005/gml/b'
+      xmlns:data='http://www.google.com/2005/gml/data'
+      xmlns:expr='http://www.google.com/2005/gml/expr'>
+
+<head>
+  <meta content='IE=EmulateIE7' http-equiv='X-UA-Compatible'/>
+  <meta content='width=device-width, initial-scale=1' name='viewport'/>
+  <b:include data='blog' name='all-head-content'/>
+
+  <title>
+    <b:if cond='data:blog.pageType == &quot;index&quot;'>
+      <data:blog.title/>
+    <b:else/>
+      <data:blog.pageName/> — <data:blog.title/>
+    </b:if>
+  </title>
+
+  <link href='https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&amp;family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Jost:wght@300;400;500;600&amp;display=swap' rel='stylesheet' type='text/css'/>
+
+  <b:skin><![CDATA[
+/* ============================================================
+   NUESTRA VEREDA — Blogger Theme
+   Periodismo narrativo y literatura de no ficción · Guayaquil
+   ============================================================ */
+
+/* ─── CSS Variables ─────────────────────────────────────────── */
+:root {
+  --color-cream:        #F4EFE6;
+  --color-cream-alt:    #EDE6D8;
+  --color-ink:          #1A1612;
+  --color-ink-mid:      #3D3530;
+  --color-muted:        #6B6058;
+  --color-ochre:        #C8943A;
+  --color-ochre-light:  #E4B96A;
+  --color-mangrove:     #192B21;
+  --color-mangrove-mid: #243D2E;
+  --color-teal:         #2D6A4F;
+  --color-border:       #D0C8BB;
+  --color-white:        #FFFFFF;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'EB Garamond', Georgia, serif;
+  --font-ui:      'Jost', 'Helvetica Neue', sans-serif;
+}
+
+/* ─── Base reset ────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Blogger widget resets ────────────────────────────────── */
+.region { margin: 0; padding: 0; }
+.widget { margin: 0 !important; padding: 0 !important; border: none !important; }
+.widget .widget-title,
+.widget h2.title,
+.widget-title-wrap { display: none !important; }
+.blog-posts { margin: 0; padding: 0; }
+.post { margin: 0; padding: 0; }
+/* Blogger's default body padding */
+#outer-wrapper, #content-wrapper, #main-wrapper { padding: 0 !important; margin: 0 !important; width: 100% !important; }
+
+/* ─── Genre badges ──────────────────────────────────────────── */
+.genre-badge {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.2em 0.7em;
+  border-radius: 2px;
+}
+.genre-badge--cronica    { background: #C8943A20; color: #9A6C1E; border: 1px solid #C8943A60; }
+.genre-badge--perfil     { background: #2D6A4F20; color: #1E5038; border: 1px solid #2D6A4F60; }
+.genre-badge--ensayo     { background: #5A3E5520; color: #42293E; border: 1px solid #5A3E5560; }
+.genre-badge--memoria    { background: #7A3B2820; color: #5C2B1A; border: 1px solid #7A3B2860; }
+.genre-badge--reportaje  { background: #1A4A6820; color: #123550; border: 1px solid #1A4A6860; }
+.genre-badge--testimonio { background: #4A4A3520; color: #323220; border: 1px solid #4A4A3560; }
+.genre-badge--default    { background: #1A161220; color: #3D3530; border: 1px solid #1A161240; }
+.genre-badge--light {
+  background: rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.95);
+  border: 1px solid rgba(255,255,255,0.35);
+}
+/* show only first label badge */
+.post-labels .genre-badge-wrap:not(:first-child) { display: none; }
+
+/* ─── Top accent bar ────────────────────────────────────────── */
+.top-bar {
+  background: var(--color-mangrove);
+  color: rgba(255,255,255,0.7);
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  padding: 0.4rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ─── Masthead ──────────────────────────────────────────────── */
+.masthead {
+  background: var(--color-cream);
+  text-align: center;
+  padding: 2.5rem 2rem 0;
+  position: relative;
+}
+.masthead__eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 0.75rem;
+}
+.masthead__title {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  margin: 0;
+}
+.masthead__subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-style: italic;
+  color: var(--color-muted);
+  margin: 0.75rem 0 0;
+}
+.masthead__rule {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-border), var(--color-ochre), var(--color-border), transparent);
+  margin: 1.5rem auto 0;
+  max-width: 800px;
+}
+
+/* ─── Navigation ────────────────────────────────────────────── */
+.nav-bar {
+  background: var(--color-cream);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(8px);
+}
+.nav-bar__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 52px;
+}
+.nav-bar__logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-ink);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.nav-bar__links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav-bar__link {
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink-mid);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  position: relative;
+}
+.nav-bar__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-ochre);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+.nav-bar__link:hover { color: var(--color-ink); }
+.nav-bar__link:hover::after { transform: scaleX(1); }
+
+.nav-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-ink);
+  padding: 0.25rem;
+}
+
+/* ─── Hero Carousel ─────────────────────────────────────────── */
+.carousel {
+  position: relative;
+  width: 100%;
+  height: clamp(480px, 72vh, 700px);
+  overflow: hidden;
+  background: var(--color-mangrove);
+}
+.carousel__slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.carousel__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  overflow: hidden;
+}
+.carousel__slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.carousel__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  transition: transform 8s ease;
+}
+.carousel__slide.is-active .carousel__image { transform: scale(1); }
+.carousel__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(15,24,18,0.92) 0%,
+    rgba(15,24,18,0.55) 45%,
+    rgba(15,24,18,0.15) 100%
+  );
+}
+.carousel__content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 3rem 4rem;
+  max-width: 820px;
+}
+.carousel__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: #F8F3EB;
+  margin: 0.75rem 0 0.8rem;
+}
+.carousel__excerpt {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: rgba(248,243,235,0.8);
+  margin: 0 0 1.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.carousel__read-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ochre-light);
+  text-decoration: none;
+  border: 1px solid rgba(228,185,106,0.5);
+  padding: 0.6rem 1.4rem;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+.carousel__read-more:hover {
+  background: var(--color-ochre);
+  color: var(--color-mangrove);
+  border-color: var(--color-ochre);
+}
+.carousel__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+.carousel__nav--left  { left: 1.5rem; }
+.carousel__nav--right { right: 1.5rem; }
+.carousel__nav-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  backdrop-filter: blur(4px);
+}
+.carousel__nav-btn:hover {
+  background: rgba(255,255,255,0.2);
+  border-color: rgba(255,255,255,0.4);
+}
+.carousel__dots {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 4rem;
+  display: flex;
+  gap: 0.4rem;
+  z-index: 10;
+}
+.carousel__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+.carousel__dot.is-active {
+  background: var(--color-ochre-light);
+  transform: scale(1.3);
+}
+
+/* ─── Section headings ──────────────────────────────────────── */
+.section-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  color: var(--color-ink);
+  margin: 0 0 0.25rem;
+}
+.section-rule {
+  width: 48px;
+  height: 2px;
+  background: var(--color-ochre);
+  margin: 0.75rem 0 2rem;
+}
+
+/* ─── Post grid ─────────────────────────────────────────────── */
+.posts-section {
+  background: var(--color-cream);
+  padding: 5rem 2rem;
+}
+.posts-section__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.posts-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+@media (max-width: 900px) { .posts-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .posts-grid { grid-template-columns: 1fr; } }
+.posts-grid__item:first-child { grid-column: span 2; }
+@media (max-width: 900px) { .posts-grid__item:first-child { grid-column: span 1; } }
+
+.post-card {
+  background: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.post-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(26,22,18,0.12);
+}
+.post-card__image-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  background: var(--color-mangrove);
+}
+.posts-grid__item:first-child .post-card__image-wrap { aspect-ratio: 21 / 9; }
+.post-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+.post-card:hover .post-card__image { transform: scale(1.04); }
+.post-card__badge-wrap {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+}
+.post-card__body {
+  padding: 1.4rem 1.6rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.post-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.7rem;
+}
+.post-card__date {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  color: var(--color-muted);
+  letter-spacing: 0.05em;
+}
+.post-card__title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--color-ink);
+  margin: 0 0 0.6rem;
+}
+.posts-grid__item:first-child .post-card__title { font-size: 1.5rem; }
+.post-card__excerpt {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  line-height: 1.6;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+.post-card__author {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border);
+}
+.archive-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  background: var(--color-ink);
+  padding: 0.85rem 2rem;
+  text-decoration: none;
+  transition: background 0.25s ease;
+  border: none;
+  cursor: pointer;
+}
+.archive-btn:hover { background: var(--color-mangrove); }
+
+/* ─── Individual post body ──────────────────────────────────── */
+.post-body h1,
+.post-body h2,
+.post-body h3,
+.post-body h4 {
+  font-family: var(--font-display);
+  color: var(--color-ink);
+  line-height: 1.3;
+  margin: 2rem 0 0.75rem;
+}
+.post-body h2 { font-size: 1.6rem; }
+.post-body h3 { font-size: 1.3rem; }
+.post-body p { margin: 0 0 1.4rem; }
+.post-body a { color: var(--color-teal); }
+.post-body a:hover { color: var(--color-ochre); }
+.post-body blockquote {
+  margin: 2rem 0;
+  padding: 1rem 1.5rem;
+  border-left: 3px solid var(--color-ochre);
+  font-style: italic;
+  color: var(--color-ink-mid);
+  background: var(--color-cream-alt);
+}
+.post-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 2rem auto;
+}
+
+/* ─── Contact section ───────────────────────────────────────── */
+.contact-section {
+  background: var(--color-mangrove);
+  padding: 6rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--color-ochre), transparent);
+}
+.contact-section__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 5rem;
+  align-items: start;
+}
+@media (max-width: 800px) {
+  .contact-section__inner { grid-template-columns: 1fr; gap: 3rem; }
+}
+.contact-info__heading {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  color: #F8F3EB;
+  margin: 0 0 0.5rem;
+}
+.contact-info__lead {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(248,243,235,0.65);
+  margin: 0 0 2.5rem;
+  line-height: 1.6;
+}
+.contact-info__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.contact-info__icon {
+  width: 18px;
+  height: 18px;
+  color: var(--color-ochre-light);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.contact-info__label {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ochre-light);
+  margin-bottom: 0.15rem;
+  display: block;
+}
+.contact-info__value {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: rgba(248,243,235,0.8);
+}
+.social-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.social-link {
+  width: 38px;
+  height: 38px;
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.social-link:hover {
+  border-color: var(--color-ochre);
+  color: var(--color-ochre-light);
+  background: rgba(200,148,58,0.1);
+}
+
+/* ─── Contact form ──────────────────────────────────────────── */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.form-field { display: flex; flex-direction: column; gap: 0.35rem; }
+.form-label {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.form-input,
+.form-textarea {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(248,243,235,0.9);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  border-radius: 0;
+  width: 100%;
+}
+.form-input::placeholder,
+.form-textarea::placeholder { color: rgba(255,255,255,0.25); }
+.form-input:focus,
+.form-textarea:focus {
+  border-color: rgba(228,185,106,0.5);
+  background: rgba(255,255,255,0.08);
+}
+.form-textarea { min-height: 140px; resize: vertical; }
+.form-submit {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--color-ochre);
+  color: var(--color-mangrove);
+  border: none;
+  padding: 0.9rem 2rem;
+  cursor: pointer;
+  transition: background 0.25s ease;
+  align-self: flex-start;
+}
+.form-submit:hover { background: var(--color-ochre-light); }
+.form-note {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.3);
+  margin-top: 0.5rem;
+}
+
+/* ─── Footer ────────────────────────────────────────────────── */
+.site-footer {
+  background: #0F1C14;
+  padding: 3.5rem 2rem 2rem;
+  color: rgba(255,255,255,0.5);
+}
+.site-footer__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 2rem;
+}
+@media (max-width: 700px) {
+  .site-footer__inner { grid-template-columns: 1fr; gap: 2rem; }
+}
+.footer-brand__name {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #F8F3EB;
+  margin: 0 0 0.5rem;
+}
+.footer-brand__desc {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.6;
+  max-width: 300px;
+}
+.footer-col__heading {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-ochre-light);
+  margin-bottom: 1rem;
+}
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.footer-links a {
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: rgba(255,255,255,0.8); }
+.footer-social {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+.footer-social-link {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.footer-social-link:hover {
+  border-color: rgba(228,185,106,0.5);
+  color: var(--color-ochre-light);
+}
+.footer-bottom {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.footer-copyright {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.28);
+  letter-spacing: 0.04em;
+}
+
+/* ─── Pagination ────────────────────────────────────────────── */
+.pagination-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 3.5rem;
+}
+
+/* ─── Animations ────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up { animation: fadeUp 0.7s ease both; }
+
+/* ─── Responsive ────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .top-bar { display: none; }
+  .masthead__title { font-size: 3rem; }
+  .carousel__content { padding: 2rem 1.5rem; }
+  .posts-section { padding: 3rem 1.25rem; }
+  .nav-bar__links { gap: 1.25rem; }
+  .nav-bar__inner { padding: 0 1.25rem; }
+  .carousel__nav-btn { width: 36px; height: 36px; }
+  .carousel__nav--left  { left: 0.75rem; }
+  .carousel__nav--right { right: 0.75rem; }
+  .carousel__dots { right: 1.5rem; }
+}
+@media (max-width: 600px) {
+  .nav-menu-btn { display: flex; }
+  .nav-bar__links { display: none; }
+  .nav-bar__links.is-open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 52px;
+    left: 0;
+    right: 0;
+    background: var(--color-cream);
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem 1.5rem;
+    gap: 1.25rem;
+    z-index: 100;
+  }
+}
+  ]]></b:skin>
+</head>
+
+<body expr:class='data:blog.pageType'>
+
+  <!-- ════════════════════════════════════════════════════════
+       HEADER
+       ════════════════════════════════════════════════════════ -->
+  <b:section class='header-section' id='header' maxwidgets='1' showaddelement='no'>
+    <b:widget id='Header1' locked='true' title='Encabezado' type='Header'>
+      <b:includable id='main'>
+        <header>
+          <!-- Top accent bar -->
+          <div class='top-bar'>
+            <span>Guayaquil, Ecuador · Periodismo narrativo y literatura de no ficción</span>
+            <span>Publicación independiente</span>
+          </div>
+
+          <!-- Masthead -->
+          <div class='masthead'>
+            <p class='masthead__eyebrow'>Crónicas · Perfiles · Ensayos · Memorias urbanas</p>
+            <h1 class='masthead__title'><data:blog.title/></h1>
+            <p class='masthead__subtitle'><data:blog.description/></p>
+            <div class='masthead__rule'></div>
+          </div>
+
+          <!-- Sticky navigation -->
+          <nav class='nav-bar' id='site-nav'>
+            <div class='nav-bar__inner'>
+              <a class='nav-bar__logo' expr:href='data:blog.homepageUrl'><data:blog.title/></a>
+
+              <!-- Mobile menu toggle -->
+              <button aria-label='Abrir menú' class='nav-menu-btn' id='nav-toggle' onclick='toggleNav()' type='button'>
+                <svg fill='none' height='22' stroke='currentColor' stroke-linecap='round' stroke-width='2' viewBox='0 0 24 24' width='22'>
+                  <line x1='3' x2='21' y1='6' y2='6'/>
+                  <line x1='3' x2='21' y1='12' y2='12'/>
+                  <line x1='3' x2='21' y1='18' y2='18'/>
+                </svg>
+              </button>
+
+              <ul class='nav-bar__links' id='nav-links'>
+                <li><a class='nav-bar__link' expr:href='data:blog.homepageUrl'>Inicio</a></li>
+                <li><a class='nav-bar__link' href='/p/sobre-el-proyecto.html'>Sobre nuestro proyecto</a></li>
+                <li><a class='nav-bar__link' href='/p/colaboradores.html'>Colaboradores</a></li>
+                <li><a class='nav-bar__link' href='#contacto'>Contacto</a></li>
+              </ul>
+            </div>
+          </nav>
+        </header>
+      </b:includable>
+    </b:widget>
+  </b:section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       HERO CAROUSEL  (posts with label "Destacado", loaded via JS)
+       ════════════════════════════════════════════════════════ -->
+  <b:section class='carousel-section' id='crosscol' maxwidgets='1' showaddelement='no'>
+    <b:widget id='HTML1' locked='false' title='Carrusel Destacados' type='HTML'>
+      <b:includable id='main'>
+        <b:if cond='data:blog.pageType == &quot;index&quot;'>
+          <section aria-label='Entradas destacadas' class='carousel' id='hero-carousel'>
+            <div class='carousel__slides' id='carousel-slides'>
+              <div style='display:flex;align-items:center;justify-content:center;height:100%;color:rgba(255,255,255,0.4);font-family:var(--font-ui);font-size:0.85rem;letter-spacing:0.05em;'>
+                Cargando entradas destacadas&#8230;
+              </div>
+            </div>
+
+            <div class='carousel__nav carousel__nav--left'>
+              <button aria-label='Anterior' class='carousel__nav-btn' onclick='carouselPrev()' type='button'>
+                <svg fill='none' height='18' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='18'>
+                  <polyline points='15 18 9 12 15 6'/>
+                </svg>
+              </button>
+            </div>
+            <div class='carousel__nav carousel__nav--right'>
+              <button aria-label='Siguiente' class='carousel__nav-btn' onclick='carouselNext()' type='button'>
+                <svg fill='none' height='18' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' width='18'>
+                  <polyline points='9 18 15 12 9 6'/>
+                </svg>
+              </button>
+            </div>
+
+            <div aria-label='Diapositivas' class='carousel__dots' id='carousel-dots' role='tablist'></div>
+          </section>
+        </b:if>
+      </b:includable>
+    </b:widget>
+  </b:section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       MAIN — Post grid (index) or individual post / page (item)
+       ════════════════════════════════════════════════════════ -->
+  <b:section class='main-section' id='main' showaddelement='yes'>
+    <b:widget id='Blog1' locked='true' title='Publicaciones' type='Blog'>
+      <b:includable id='main' var='top'>
+
+        <!-- ── Individual post or static page ── -->
+        <b:if cond='data:blog.pageType == &quot;item&quot; || data:blog.pageType == &quot;static_page&quot;'>
+          <b:loop values='data:posts' var='post'>
+
+            <!-- Hero image -->
+            <div style='position:relative;height:50vh;min-height:320px;background:var(--color-mangrove);overflow:hidden;'>
+              <b:if cond='data:post.thumbnailUrl'>
+                <img alt='' class='post-hero-img' expr:src='data:post.thumbnailUrl' style='width:100%;height:100%;object-fit:cover;opacity:0.6;'/>
+              </b:if>
+              <div style='position:absolute;inset:0;background:linear-gradient(to top,rgba(15,24,18,0.9) 0%,rgba(15,24,18,0.3) 60%,transparent 100%);'></div>
+              <div style='position:absolute;bottom:0;left:0;right:0;padding:2.5rem 2rem;max-width:860px;margin:0 auto;'>
+                <!-- First label as genre badge -->
+                <b:if cond='data:post.labels'>
+                  <div class='post-labels' style='margin-bottom:0.6rem;'>
+                    <b:loop values='data:post.labels' var='label'>
+                      <span class='genre-badge-wrap'>
+                        <span class='genre-badge genre-badge--light' expr:data-genre='data:label.name'>
+                          <data:label.name/>
+                        </span>
+                      </span>
+                    </b:loop>
+                  </div>
+                </b:if>
+                <h1 style='font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.8rem);font-weight:700;color:#F8F3EB;margin:0;line-height:1.2;'>
+                  <data:post.title/>
+                </h1>
+              </div>
+            </div>
+
+            <!-- Article body -->
+            <main style='background:var(--color-cream);padding:4rem 2rem 6rem;'>
+              <article style='max-width:680px;margin:0 auto;'>
+                <!-- Meta -->
+                <div style='display:flex;align-items:center;gap:1rem;margin-bottom:2rem;padding-bottom:1.25rem;border-bottom:1px solid var(--color-border);flex-wrap:wrap;'>
+                  <span style='font-family:var(--font-ui);font-size:0.75rem;color:var(--color-muted);letter-spacing:0.04em;'>
+                    Por <strong style='color:var(--color-ink-mid);'><data:post.author.name/></strong>
+                  </span>
+                  <span style='width:3px;height:3px;border-radius:50%;background:var(--color-border);display:inline-block;'></span>
+                  <span style='font-family:var(--font-ui);font-size:0.75rem;color:var(--color-muted);'>
+                    <data:post.date/>
+                  </span>
+                  <b:if cond='data:post.labels'>
+                    <span style='width:3px;height:3px;border-radius:50%;background:var(--color-border);display:inline-block;'></span>
+                    <span style='display:flex;gap:0.4rem;flex-wrap:wrap;'>
+                      <b:loop values='data:post.labels' var='label'>
+                        <a class='genre-badge' expr:data-genre='data:label.name' expr:href='data:label.url' style='text-decoration:none;'>
+                          <data:label.name/>
+                        </a>
+                      </b:loop>
+                    </span>
+                  </b:if>
+                </div>
+
+                <!-- Snippet as standfirst -->
+                <b:if cond='data:post.snippet'>
+                  <p style='font-family:var(--font-body);font-style:italic;font-size:1.2rem;color:var(--color-ink-mid);line-height:1.6;margin-bottom:2rem;border-left:3px solid var(--color-ochre);padding-left:1.25rem;'>
+                    <data:post.snippet/>
+                  </p>
+                </b:if>
+
+                <!-- Full body -->
+                <div class='post-body' style='font-family:var(--font-body);font-size:1.1rem;line-height:1.8;color:var(--color-ink);'>
+                  <data:post.body/>
+                </div>
+
+                <!-- Back link -->
+                <div style='margin-top:4rem;padding-top:2rem;border-top:1px solid var(--color-border);'>
+                  <a expr:href='data:blog.homepageUrl' style='font-family:var(--font-ui);font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--color-teal);text-decoration:none;display:inline-flex;align-items:center;gap:0.4rem;'>
+                    <svg fill='none' height='14' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' viewBox='0 0 24 24' width='14'>
+                      <line x1='19' x2='5' y1='12' y2='12'/>
+                      <polyline points='12 19 5 12 12 5'/>
+                    </svg>
+                    Volver al inicio
+                  </a>
+                </div>
+              </article>
+            </main>
+
+          </b:loop>
+
+        <b:else/>
+
+          <!-- ── Post grid (index, archive, label pages) ── -->
+          <section class='posts-section' id='publicaciones'>
+            <div class='posts-section__inner'>
+              <header style='margin-bottom:2.5rem;'>
+                <b:if cond='data:blog.pageType == &quot;index&quot;'>
+                  <h2 class='section-heading'>Explorar todas las publicaciones</h2>
+                <b:else/>
+                  <h2 class='section-heading'><data:blog.pageName/></h2>
+                </b:if>
+                <div class='section-rule'></div>
+                <p style='font-family:var(--font-body);font-style:italic;color:var(--color-muted);font-size:1rem;max-width:540px;line-height:1.65;'>
+                  Textos de no ficción sobre la ciudad, sus barrios, sus personajes y sus memorias.
+                </p>
+              </header>
+
+              <div class='posts-grid'>
+                <b:loop values='data:posts' var='post'>
+                  <div class='posts-grid__item'>
+                    <a class='post-card' expr:href='data:post.url'>
+                      <div class='post-card__image-wrap'>
+                        <b:if cond='data:post.thumbnailUrl'>
+                          <img alt='' class='post-card__image' expr:src='data:post.thumbnailUrl' loading='lazy'/>
+                        <b:else/>
+                          <div style='width:100%;height:100%;background:linear-gradient(135deg,var(--color-mangrove) 0%,var(--color-mangrove-mid) 100%);'></div>
+                        </b:if>
+                        <!-- First label badge overlay -->
+                        <div class='post-card__badge-wrap'>
+                          <b:if cond='data:post.labels'>
+                            <div class='post-labels'>
+                              <b:loop values='data:post.labels' var='label'>
+                                <span class='genre-badge-wrap'>
+                                  <span class='genre-badge' expr:data-genre='data:label.name'>
+                                    <data:label.name/>
+                                  </span>
+                                </span>
+                              </b:loop>
+                            </div>
+                          </b:if>
+                        </div>
+                      </div>
+
+                      <div class='post-card__body'>
+                        <div class='post-card__meta'>
+                          <span class='post-card__date'><data:post.date/></span>
+                        </div>
+                        <h3 class='post-card__title'><data:post.title/></h3>
+                        <p class='post-card__excerpt'><data:post.snippet/></p>
+                        <p class='post-card__author'>Por <data:post.author.name/></p>
+                      </div>
+                    </a>
+                  </div>
+                </b:loop>
+              </div>
+
+              <!-- Blogger built-in pagination -->
+              <div class='pagination-wrap'>
+                <b:if cond='data:olderPageUrl'>
+                  <a class='archive-btn' expr:href='data:olderPageUrl'>
+                    Publicaciones anteriores
+                    <svg fill='none' height='14' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' viewBox='0 0 24 24' width='14'>
+                      <line x1='5' x2='19' y1='12' y2='12'/><polyline points='12 5 19 12 12 19'/>
+                    </svg>
+                  </a>
+                </b:if>
+                <b:if cond='data:newerPageUrl'>
+                  <a class='archive-btn' expr:href='data:newerPageUrl' style='background:var(--color-mangrove);'>
+                    <svg fill='none' height='14' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' viewBox='0 0 24 24' width='14'>
+                      <line x1='19' x2='5' y1='12' y2='12'/><polyline points='12 19 5 12 12 5'/>
+                    </svg>
+                    Publicaciones recientes
+                  </a>
+                </b:if>
+              </div>
+
+            </div>
+          </section>
+
+        </b:if>
+      </b:includable>
+    </b:widget>
+  </b:section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       FOOTER — Contact section + site footer
+       ════════════════════════════════════════════════════════ -->
+  <b:section class='footer-section' id='footer-1' maxwidgets='3' showaddelement='no'>
+    <b:widget id='HTML2' locked='false' title='Contacto y Pie de página' type='HTML'>
+      <b:includable id='main'>
+
+        <!-- Contact section -->
+        <section class='contact-section' id='contacto'>
+          <div class='contact-section__inner'>
+
+            <!-- Left: contact info -->
+            <div>
+              <h2 class='contact-info__heading'>Escríbenos</h2>
+              <p class='contact-info__lead'>
+                Si tienes una historia que contar sobre Guayaquil, o quieres colaborar con nosotros, nos interesa escucharte.
+              </p>
+
+              <div class='contact-info__item'>
+                <svg class='contact-info__icon' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' viewBox='0 0 24 24'>
+                  <rect height='16' rx='2' width='20' x='2' y='4'/><polyline points='2,4 12,13 22,4'/>
+                </svg>
+                <div>
+                  <span class='contact-info__label'>Correo electrónico</span>
+                  <span class='contact-info__value'>contacto@nuestravereda.ec</span>
+                </div>
+              </div>
+
+              <div class='contact-info__item'>
+                <svg class='contact-info__icon' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' viewBox='0 0 24 24'>
+                  <path d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/><circle cx='12' cy='10' r='3'/>
+                </svg>
+                <div>
+                  <span class='contact-info__label'>Ciudad</span>
+                  <span class='contact-info__value'>Guayaquil, Ecuador</span>
+                </div>
+              </div>
+
+              <div class='contact-info__item'>
+                <svg class='contact-info__icon' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' viewBox='0 0 24 24'>
+                  <circle cx='12' cy='12' r='10'/><polyline points='12 6 12 12 16 14'/>
+                </svg>
+                <div>
+                  <span class='contact-info__label'>Colaboraciones</span>
+                  <span class='contact-info__value'>colabora@nuestravereda.ec</span>
+                </div>
+              </div>
+
+              <div class='social-links'>
+                <a aria-label='Instagram' class='social-link' href='#'>
+                  <svg fill='none' height='16' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' viewBox='0 0 24 24' width='16'>
+                    <rect height='20' rx='5' width='20' x='2' y='2'/><circle cx='12' cy='12' r='4'/><circle cx='17.5' cy='6.5' fill='currentColor' r='1' stroke='none'/>
+                  </svg>
+                </a>
+                <a aria-label='Twitter / X' class='social-link' href='#'>
+                  <svg fill='currentColor' height='15' viewBox='0 0 24 24' width='15'>
+                    <path d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z'/>
+                  </svg>
+                </a>
+                <a aria-label='Facebook' class='social-link' href='#'>
+                  <svg fill='none' height='16' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' viewBox='0 0 24 24' width='16'>
+                    <path d='M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z'/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <!-- Right: contact form -->
+            <!-- NOTA: Actualiza el atributo action con tu endpoint de Formspree u otro servicio. -->
+            <!-- Instrucciones: https://formspree.io/ — crea un formulario y copia el action URL. -->
+            <form action='https://formspree.io/f/YOUR_FORM_ID' class='contact-form' method='POST'>
+              <div class='form-field'>
+                <label class='form-label' for='cf-name'>Nombre</label>
+                <input class='form-input' id='cf-name' name='name' placeholder='Tu nombre completo' required='required' type='text'/>
+              </div>
+              <div class='form-field'>
+                <label class='form-label' for='cf-email'>Correo electrónico</label>
+                <input class='form-input' id='cf-email' name='email' placeholder='tu@correo.com' required='required' type='email'/>
+              </div>
+              <div class='form-field'>
+                <label class='form-label' for='cf-message'>Mensaje</label>
+                <textarea class='form-textarea' id='cf-message' name='message' placeholder='Cuéntanos tu historia o propuesta...' required='required'></textarea>
+              </div>
+              <button class='form-submit' type='submit'>
+                Enviar mensaje
+                <svg fill='none' height='14' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.5' viewBox='0 0 24 24' width='14'>
+                  <line x1='22' x2='11' y1='2' y2='13'/><polygon points='22 2 15 22 11 13 2 9 22 2'/>
+                </svg>
+              </button>
+              <p class='form-note'>Para colaboraciones: colabora@nuestravereda.ec</p>
+            </form>
+
+          </div>
+        </section>
+
+        <!-- Site footer -->
+        <footer class='site-footer'>
+          <div class='site-footer__inner'>
+            <div>
+              <p class='footer-brand__name'>Nuestra vereda</p>
+              <p class='footer-brand__desc'>
+                Publicación digital independiente dedicada al periodismo narrativo y la literatura de no ficción desde Guayaquil, Ecuador.
+              </p>
+            </div>
+            <div>
+              <p class='footer-col__heading'>Publicación</p>
+              <ul class='footer-links'>
+                <li><a href='/'>Inicio</a></li>
+                <li><a href='/p/sobre-el-proyecto.html'>Sobre el proyecto</a></li>
+                <li><a href='/p/colaboradores.html'>Colaboradores</a></li>
+                <li><a href='#contacto'>Contacto</a></li>
+              </ul>
+            </div>
+            <div>
+              <p class='footer-col__heading'>Síguenos</p>
+              <div class='footer-social'>
+                <a aria-label='Instagram' class='footer-social-link' href='#'>
+                  <svg fill='none' height='14' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' viewBox='0 0 24 24' width='14'>
+                    <rect height='20' rx='5' width='20' x='2' y='2'/><circle cx='12' cy='12' r='4'/><circle cx='17.5' cy='6.5' fill='currentColor' r='1' stroke='none'/>
+                  </svg>
+                </a>
+                <a aria-label='Twitter / X' class='footer-social-link' href='#'>
+                  <svg fill='currentColor' height='13' viewBox='0 0 24 24' width='13'>
+                    <path d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.259 5.63zm-1.161 17.52h1.833L7.084 4.126H5.117z'/>
+                  </svg>
+                </a>
+                <a aria-label='Facebook' class='footer-social-link' href='#'>
+                  <svg fill='none' height='14' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' viewBox='0 0 24 24' width='14'>
+                    <path d='M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z'/>
+                  </svg>
+                </a>
+              </div>
+              <div style='margin-top:2rem;'>
+                <p class='footer-col__heading'>Género</p>
+                <ul class='footer-links' style='flex-direction:row;flex-wrap:wrap;gap:0.35rem;'>
+                  <li><a href='/search/label/Cr%C3%B3nica'>Crónica</a></li>
+                  <li><a href='/search/label/Perfil'>Perfil</a></li>
+                  <li><a href='/search/label/Ensayo'>Ensayo</a></li>
+                  <li><a href='/search/label/Reportaje'>Reportaje</a></li>
+                  <li><a href='/search/label/Memoria%20urbana'>Memoria urbana</a></li>
+                  <li><a href='/search/label/Testimonio'>Testimonio</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class='footer-bottom'>
+            <span class='footer-copyright'>© <span id='footer-year'>2024</span> Nuestra vereda. Todos los derechos reservados.</span>
+            <span class='footer-copyright'>Diseñado y publicado en Guayaquil, Ecuador</span>
+          </div>
+        </footer>
+
+      </b:includable>
+    </b:widget>
+  </b:section>
+
+
+  <!-- ════════════════════════════════════════════════════════
+       JAVASCRIPT
+       ════════════════════════════════════════════════════════ -->
+  <script type='text/javascript'>
+  //<![CDATA[
+
+  /* ── Genre badge class mapping ─────────────────────────── */
+  var GENRE_MAP = {
+    'Crónica':        'genre-badge--cronica',
+    'Cronica':        'genre-badge--cronica',
+    'Perfil':         'genre-badge--perfil',
+    'Ensayo':         'genre-badge--ensayo',
+    'Memoria urbana': 'genre-badge--memoria',
+    'Reportaje':      'genre-badge--reportaje',
+    'Testimonio':     'genre-badge--testimonio'
+  };
+
+  /* ── Navigation toggle (mobile) ───────────────────────── */
+  function toggleNav() {
+    var links = document.getElementById('nav-links');
+    var btn   = document.getElementById('nav-toggle');
+    if (!links) return;
+    var open = links.classList.toggle('is-open');
+    if (btn) {
+      btn.innerHTML = open
+        ? '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
+        : '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+    }
+  }
+
+  /* ── Genre badge class assignment ────────────────────── */
+  function applyGenreBadges() {
+    document.querySelectorAll('[data-genre]').forEach(function(el) {
+      var genre = el.getAttribute('data-genre') || '';
+      var cls   = GENRE_MAP[genre] || 'genre-badge--default';
+      if (!el.classList.contains(cls)) el.classList.add(cls);
+    });
+  }
+
+  /* ── Thumbnail URL upscaling ──────────────────────────── */
+  function upscaleThumbnails() {
+    var selectors = ['.post-card__image', '.post-hero-img'];
+    selectors.forEach(function(sel) {
+      document.querySelectorAll(sel).forEach(function(img) {
+        var src = img.getAttribute('src') || '';
+        if (!src) return;
+        /* Blogger thumbnail: .../s72-c/... → .../w1200/...  */
+        var large = src
+          .replace(/=s\d+-c($|\&)/, '=w1200-h675-c')
+          .replace(/\/s\d+-c\//, '/w1200/')
+          .replace(/\/s\d+\//, '/w1200/');
+        if (large !== src) img.src = large;
+      });
+    });
+  }
+
+  /* ── Carousel state ───────────────────────────────────── */
+  var _posts    = [];
+  var _active   = 0;
+  var _timer    = null;
+  var _paused   = false;
+
+  function _esc(s) {
+    if (!s) return '';
+    return String(s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function _fmtDate(iso) {
+    try {
+      return new Date(iso).toLocaleDateString('es-EC', { year: 'numeric', month: 'long', day: 'numeric' });
+    } catch(e) { return ''; }
+  }
+
+  function _goTo(idx) {
+    var slides = document.querySelectorAll('.carousel__slide');
+    var dots   = document.querySelectorAll('.carousel__dot');
+    if (slides[_active]) {
+      slides[_active].classList.remove('is-active');
+      slides[_active].setAttribute('aria-hidden', 'true');
+    }
+    if (dots[_active]) {
+      dots[_active].classList.remove('is-active');
+      dots[_active].setAttribute('aria-selected', 'false');
+    }
+    _active = ((idx % _posts.length) + _posts.length) % _posts.length;
+    if (slides[_active]) {
+      slides[_active].classList.add('is-active');
+      slides[_active].setAttribute('aria-hidden', 'false');
+    }
+    if (dots[_active]) {
+      dots[_active].classList.add('is-active');
+      dots[_active].setAttribute('aria-selected', 'true');
+    }
+  }
+
+  function carouselNext() { _goTo(_active + 1); }
+  function carouselPrev() { _goTo(_active - 1); }
+
+  function _buildCarousel(posts) {
+    _posts  = posts || [];
+    _active = 0;
+    var slidesEl = document.getElementById('carousel-slides');
+    var dotsEl   = document.getElementById('carousel-dots');
+    var carousel = document.getElementById('hero-carousel');
+    if (!slidesEl || !carousel) return;
+
+    if (!_posts.length) { carousel.style.display = 'none'; return; }
+
+    slidesEl.innerHTML = '';
+    if (dotsEl) dotsEl.innerHTML = '';
+
+    _posts.forEach(function(post, i) {
+      var imgUrl  = post.thumb || '';
+      var genre   = post.labels && post.labels[0] ? post.labels[0] : '';
+      var arrowSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
+
+      var slide = document.createElement('div');
+      slide.className  = 'carousel__slide' + (i === 0 ? ' is-active' : '');
+      slide.setAttribute('aria-hidden', i !== 0 ? 'true' : 'false');
+      slide.innerHTML  = (imgUrl
+        ? '<img class="carousel__image" src="' + _esc(imgUrl) + '" alt="" loading="' + (i === 0 ? 'eager' : 'lazy') + '"/>'
+        : '<div class="carousel__image" style="background:var(--color-mangrove-mid);"></div>'
+      ) + '<div class="carousel__overlay"></div>'
+        + '<div class="carousel__content">'
+        + '<span class="genre-badge genre-badge--light" data-genre="' + _esc(genre) + '">' + _esc(genre) + '</span>'
+        + '<h2 class="carousel__title">' + _esc(post.title) + '</h2>'
+        + '<p class="carousel__excerpt">' + _esc(post.summary) + '</p>'
+        + '<div style="display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;">'
+        + '<a href="' + _esc(post.url) + '" class="carousel__read-more">Leer más ' + arrowSvg + '</a>'
+        + '<span style="font-family:var(--font-ui);font-size:0.72rem;color:rgba(255,255,255,0.45);letter-spacing:0.04em;">'
+        + _esc(post.author) + ' · ' + _esc(post.dateStr)
+        + '</span></div></div>';
+      slidesEl.appendChild(slide);
+
+      if (dotsEl) {
+        var dot = document.createElement('button');
+        dot.className = 'carousel__dot' + (i === 0 ? ' is-active' : '');
+        dot.setAttribute('aria-label', 'Ir a la diapositiva ' + (i + 1));
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+        (function(idx) {
+          dot.addEventListener('click', function() { _goTo(idx); });
+        })(i);
+        dotsEl.appendChild(dot);
+      }
+    });
+
+    if (_posts.length > 1) {
+      _timer = setInterval(function() { if (!_paused) carouselNext(); }, 6000);
+    }
+    carousel.addEventListener('mouseenter', function() { _paused = true; });
+    carousel.addEventListener('mouseleave', function() { _paused = false; });
+
+    applyGenreBadges();
+  }
+
+  function _parseEntries(entries) {
+    return entries.map(function(e) {
+      var url = '';
+      (e.link || []).forEach(function(l) { if (l.rel === 'alternate') url = l.href; });
+      var thumb = '';
+      if (e['media$thumbnail'] && e['media$thumbnail'].url) {
+        thumb = e['media$thumbnail'].url
+          .replace(/=s\d+-c($|\&)/, '=w1200-h675-c')
+          .replace(/\/s\d+-c\//, '/w1200/')
+          .replace(/\/s\d+\//, '/w1200/');
+      }
+      var labels = (e.category || []).map(function(c) { return c.term; })
+        .filter(function(t) { return t !== 'Destacado'; });
+      return {
+        title:   e.title   ? e.title['$t']   : '',
+        summary: e.summary ? e.summary['$t'] : '',
+        url:     url,
+        thumb:   thumb,
+        dateStr: e.published ? _fmtDate(e.published['$t']) : '',
+        author:  e.author && e.author[0] ? e.author[0].name['$t'] : '',
+        labels:  labels
+      };
+    });
+  }
+
+  /* ── Load carousel posts from Blogger feed API ─────────── */
+  function loadCarousel() {
+    var featured = '/feeds/posts/default/-/Destacado?alt=json&max-results=5';
+    var fallback  = '/feeds/posts/default?alt=json&max-results=5';
+
+    fetch(featured)
+      .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function(d) {
+        var entries = (d.feed && d.feed.entry) ? d.feed.entry : [];
+        if (!entries.length) return fetch(fallback).then(function(r) { return r.json(); })
+          .then(function(d2) { return (d2.feed && d2.feed.entry) ? d2.feed.entry : []; });
+        return entries;
+      })
+      .then(function(entries) { _buildCarousel(_parseEntries(entries)); })
+      .catch(function() {
+        var el = document.getElementById('hero-carousel');
+        if (el) el.style.display = 'none';
+      });
+  }
+
+  /* ── Footer year ───────────────────────────────────────── */
+  function setFooterYear() {
+    var el = document.getElementById('footer-year');
+    if (el) el.textContent = new Date().getFullYear();
+  }
+
+  /* ── Init ─────────────────────────────────────────────── */
+  document.addEventListener('DOMContentLoaded', function() {
+    applyGenreBadges();
+    upscaleThumbnails();
+    setFooterYear();
+    if (document.getElementById('hero-carousel')) loadCarousel();
+  });
+
+  //]]>
+  </script>
+
+</body>
+</html>
